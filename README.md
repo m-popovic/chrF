@@ -4,14 +4,14 @@
 By: Maja Popovic <maja.popovic.166@gmail.com>,  June 2017
 
 
-chrF++ is a tool for automatic evaluation of machine
-translation output based on character n-gram precision and recall. 
+chrF++ is a tool for automatic evaluation of machine translation output based on character n-gram precision and recall enhanced with word n-grams. 
 The tool calculates the  F-score averaged on all character and word n-grams, where the default character n-gram order is 6 and word n-gram order is 2.  
+
+Recent experiments have shown that adding word 1-grams and 2-grams to the standard character 6-grams improves the Pearson correlation with direct human assessments.
 The arithmetic mean is used for n-gram averaging.
 
 It is written in Python, so you have to install Python 2 or Python 3.
-The option -h, --help outputs a description of the available command
-line options.
+The option -h, --help outputs a description of the available command line options.
 
 
 Required inputs:
@@ -21,12 +21,7 @@ Required inputs:
 
 The required format of all inputs is raw text containing one sentence per line. Tokenisation is not necessary. 
 
-In the case of multiple references, all available reference
-sentences must be separated by *#.
-
-An example of multiple reference containing words, POS tags and morphemes:
-
-The weather is nice today # Very nice weather today ++ DET N V ADJ ADV # ADV ADJ N ADV ++ The weath er is nice to day # Very nice weath er to day 
+In the case of multiple references, all available reference sentences must be separated by *#
 
 
 Optional inputs:
@@ -60,7 +55,7 @@ Examples for testing:
 -------------------------------------- 
 
 You can try the tool on the given examples containing distinct languages: English (en), Czech (cs), Russian (ru) and Chinese (zh). 
-For each language, example.ref.land represents a reference and *example.hyp.lang represents a hypothesis.
+For each language, example.ref.land represents a reference and example.hyp.lang represents a hypothesis.
 
 You can try various calls and compare the results:
 
