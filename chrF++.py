@@ -125,10 +125,7 @@ def computeChrF(fpRef, fpHyp, nworder, ncorder, beta, sentence_level_scores = No
         nsent += 1
         
         # preparation for multiple references
-        maxF = 0.0
-        bestWordMatchingCount = None
-        bestCharMatchingCount = None
-        
+        maxF = -1.0
         hypNgramCounts = ngram_counts(separate_punctuation(hline), nworder)
         hypChrNgramCounts = ngram_counts(separate_characters(hline), ncorder)
 
