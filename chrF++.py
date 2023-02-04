@@ -34,10 +34,15 @@ import argparse
 from collections import defaultdict
 import time
 import string
+import unittest
 
+
+#returns list of each characters
 def separate_characters(line):
     return list(line.strip().replace(" ", ""))
 
+
+#returns list of each word (if space after punctuation)
 def separate_punctuation(line):
     words = line.strip().split()
     tokenized = []
@@ -56,6 +61,8 @@ def separate_punctuation(line):
     
     return tokenized
     
+
+#return dict of dict for each ngrams
 def ngram_counts(wordList, order):
     counts = defaultdict(lambda: defaultdict(float))
     nWords = len(wordList)
@@ -194,9 +201,18 @@ def computeChrF(fpRef, fpHyp, nworder, ncorder, beta, sentence_level_scores = No
     return totalF, averageTotalF, totalPrec, totalRec
 
 
+class Test(unittest.TestCase):
+	def test_1(self):
+		self.assertEqual(separate_characters("Hello World ☺"),['H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd', '☺'])
+	def test_2(self):
+		self.assertEqual(separate_punctuation("He; llo. Wo?rl, d"),['He', ';', 'llo', '.', 'Wo?rl', ',', 'd'])
+	def test_3(self):
+		counts = ngram_counts(['aab','ab','c','c'],2)
+		self.assertEqual(counts[0][('c',)],2.0)
+
+
 def main():
     sys.stdout.write("start_time:\t%i\n" % (time.time()))
-
 
     argParser = argparse.ArgumentParser()
     argParser.add_argument("-R", "--reference", help="reference translation", required=True)
